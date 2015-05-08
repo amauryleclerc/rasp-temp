@@ -10,6 +10,8 @@ import java.nio.file.Path;
 
 public class CapteurService {
 
+	
+	private Path filePath;
 	public CapteurService() {
 		super();
 
@@ -21,8 +23,7 @@ public class CapteurService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Path path = getDeviceFile();
-		readFile( path);
+		this.filePath = getDeviceFile();
 	}
 
 	private Path getDeviceFile() {
@@ -31,12 +32,10 @@ public class CapteurService {
 		DirectoryStream.Filter<Path> filter = new DirectoryStream.Filter<Path>() {
 			@Override
 			public boolean accept(Path file) throws IOException {
-
 				return ((Files.isDirectory(file)) && file.getFileName()
 						.toString().startsWith("28"));
 			}
 		};
-
 		Path dir = FileSystems.getDefault().getPath(baseDir);
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir,
 				filter)) {
@@ -71,8 +70,23 @@ public class CapteurService {
 				ex.printStackTrace();
 			}
 		}
-		
 		return sb.toString();
+		
+	}
+	public  float getTemperature(){
+		float resultat = -1;
+		String content = readFile(this.filePath);
+		while (!content.contains("YES")) {
+			continue;
+		}
+		int index = content.indexOf("t=");
+		if(index!=-1){
+			String stTemp = content.substring(index);
+			System.out.println(stTemp);
+			resultat = Float.valueOf(stTemp);
+		}
+		return resultat;
+		
 		
 	}
 	// base_dir = '/sys/bus/w1/devices/'
