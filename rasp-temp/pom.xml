@@ -10,30 +10,30 @@
 		<compiler-plugin.version>3.1</compiler-plugin.version>
 		<assembly-plugin.version>2.5.4</assembly-plugin.version>
 	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>javax.ws.rs-api</artifactId>
-			<version>2.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet-core</artifactId>
-			<version>2.17</version>
-		</dependency>
+<!-- 	<dependencies> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.ws.rs</groupId> -->
+<!-- 			<artifactId>javax.ws.rs-api</artifactId> -->
+<!-- 			<version>2.0.1</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.glassfish.jersey.containers</groupId> -->
+<!-- 			<artifactId>jersey-container-servlet-core</artifactId> -->
+<!-- 			<version>2.17</version> -->
+<!-- 		</dependency> -->
 
-	</dependencies>
+<!-- 	</dependencies> -->
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<url>http://192.168.1.24:80/manager/text</url>
-					<path>/gpio</path>
-				</configuration>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.tomcat.maven</groupId> -->
+<!-- 				<artifactId>tomcat7-maven-plugin</artifactId> -->
+<!-- 				<version>2.2</version> -->
+<!-- 				<configuration> -->
+<!-- 					<url>http://192.168.1.24:80/manager/text</url> -->
+<!-- 					<path>/gpio</path> -->
+<!-- 				</configuration> -->
+<!-- 			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -49,15 +49,15 @@
 				<version>${assembly-plugin.version}</version>
 				<executions>
 					<execution>
-<!-- 						<id>with-dependencies</id> -->
+						<id>jar-with-dependencies</id>
 						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
 						</goals>
 						<configuration>
-<!-- 							<descriptorRefs> -->
-<!-- 								<descriptorRef>with-dependencies</descriptorRef> -->
-<!-- 							</descriptorRefs> -->
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
 							<archive>
 								<manifest>
 									<mainClass>
