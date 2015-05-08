@@ -8,7 +8,7 @@
 
 	<properties>
 		<compiler-plugin.version>3.1</compiler-plugin.version>
-		<assembly-plugin.version>2.4</assembly-plugin.version>
+		<assembly-plugin.version>2.5.4</assembly-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -44,33 +44,31 @@
 				</configuration>
 			</plugin>
 
-<!-- 			<plugin> -->
-<!-- 				<artifactId>maven-assembly-plugin</artifactId> -->
-<!-- 				<version>${assembly-plugin.version}</version> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly-plugin.version}</version>
+				<executions>
+					<execution>
 <!-- 						<id>with-dependencies</id> -->
-<!-- 						<phase>package</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>single</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
 <!-- 							<descriptorRefs> -->
-<!-- 								<descriptorRef> -->
-<!-- 									with-dependencies -->
-<!-- 								</descriptorRef> -->
+<!-- 								<descriptorRef>with-dependencies</descriptorRef> -->
 <!-- 							</descriptorRefs> -->
-<!-- 							<archive> -->
-<!-- 								<manifest> -->
-<!-- 									<mainClass> -->
-<!-- 										fr.aleclerc.rasp.temp.Launcher -->
-<!-- 									</mainClass> -->
-<!-- 								</manifest> -->
-<!-- 							</archive> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
+							<archive>
+								<manifest>
+									<mainClass>
+										fr.aleclerc.rasp.temp.Launcher
+									</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
