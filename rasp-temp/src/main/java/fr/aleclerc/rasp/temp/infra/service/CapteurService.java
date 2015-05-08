@@ -81,9 +81,9 @@ public class CapteurService {
 		}
 		int index = content.indexOf("t=");
 		if(index!=-1){
-			String stTemp = content.substring(index);
+			String stTemp = content.substring(index+2);
 			System.out.println(stTemp);
-			resultat = Float.valueOf(stTemp);
+			resultat = Float.valueOf(stTemp)/1000;
 		}
 		return resultat;
 		
