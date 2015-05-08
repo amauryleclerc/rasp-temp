@@ -4,7 +4,7 @@
 	<groupId>fr.aleclerc</groupId>
 	<artifactId>rasp-temp</artifactId>
 	<version>0.0.1</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 		<compiler-plugin.version>3.1</compiler-plugin.version>
@@ -42,6 +42,34 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assembly-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>with-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>
+									with-dependencies
+								</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<mainClass>
+										fr.aleclerc.rasp.temp.Launcher
+									</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
