@@ -41,7 +41,7 @@ public class CapteurService {
 	        }
 	    };
 
-	    Path dir = FileSystems.getDefault().getPath(deviceFolder);
+	    Path dir = FileSystems.getDefault().getPath(baseDir);
 	    try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir,
 	            filter)) {
 	        for (Path path : stream) {
