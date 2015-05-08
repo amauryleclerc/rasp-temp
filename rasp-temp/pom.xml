@@ -44,33 +44,33 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>${assembly-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>with-dependencies</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptorRefs>
-								<descriptorRef>
-									with-dependencies
-								</descriptorRef>
-							</descriptorRefs>
-							<archive>
-								<manifest>
-									<mainClass>
-										fr.aleclerc.rasp.temp.Launcher
-									</mainClass>
-								</manifest>
-							</archive>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<artifactId>maven-assembly-plugin</artifactId> -->
+<!-- 				<version>${assembly-plugin.version}</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>with-dependencies</id> -->
+<!-- 						<phase>package</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>single</goal> -->
+<!-- 						</goals> -->
+<!-- 						<configuration> -->
+<!-- 							<descriptorRefs> -->
+<!-- 								<descriptorRef> -->
+<!-- 									with-dependencies -->
+<!-- 								</descriptorRef> -->
+<!-- 							</descriptorRefs> -->
+<!-- 							<archive> -->
+<!-- 								<manifest> -->
+<!-- 									<mainClass> -->
+<!-- 										fr.aleclerc.rasp.temp.Launcher -->
+<!-- 									</mainClass> -->
+<!-- 								</manifest> -->
+<!-- 							</archive> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 </project>
