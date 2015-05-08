@@ -10,11 +10,15 @@ import java.nio.file.Path;
 
 public class CapteurService {
 
-	
 	private Path filePath;
+
 	public CapteurService() {
 		super();
+		this.runW1();
+		this.filePath = getDeviceFile();
+	}
 
+	private void runW1() {
 		Runtime runtime = Runtime.getRuntime();
 		try {
 			runtime.exec(new String[] { "modprobe", "w1-gpio" });
@@ -23,7 +27,6 @@ public class CapteurService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.filePath = getDeviceFile();
 	}
 
 	private Path getDeviceFile() {
@@ -47,71 +50,43 @@ public class CapteurService {
 		}
 		return resultat;
 	}
-	private String readFile(Path path){
+
+	private String readFile(Path path) {
 		BufferedReader br = null;
-		 StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		try {
- 
 			String sCurrentLine;
- 
 			br = new BufferedReader(new FileReader(path.toFile()));
- 
 			while ((sCurrentLine = br.readLine()) != null) {
 				System.out.println(sCurrentLine);
 				sb.append(sCurrentLine);
 			}
- 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (br != null)br.close();
+				if (br != null)
+					br.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
 		}
 		return sb.toString();
-		
+
 	}
-	public  float getTemperature(){
+
+	public float getTemperature() {
 		float resultat = -1;
 		String content = readFile(this.filePath);
 		while (!content.contains("YES")) {
 			continue;
 		}
 		int index = content.indexOf("t=");
-		if(index!=-1){
-			String stTemp = content.substring(index+2);
-			System.out.println(stTemp);
-			resultat = Float.valueOf(stTemp)/1000;
+		if (index != -1) {
+			String stTemp = content.substring(index + 2);
+			resultat = Float.valueOf(stTemp) / 1000;
 		}
 		return resultat;
-		
-		
+
 	}
-	// base_dir = '/sys/bus/w1/devices/'
-	// device_folder = glob.glob(base_dir + '28*')[0]
-	// device_file = device_folder + '/w1_slave'
-	//
-	// def read_temp_raw():
-	// f = open(device_file, 'r')
-	// lines = f.readlines()
-	// f.close()
-	// return lines
-	//
-	// def read_temp():
-	// lines = read_temp_raw()
-	// while lines[0].strip()[-3:] != 'YES':
-	// time.sleep(0.2)
-	// lines = read_temp_raw()
-	// equals_pos = lines[1].find('t=')
-	// if equals_pos != -1:
-	// temp_string = lines[1][equals_pos+2:]
-	// temp_c = float(temp_string) / 1000.0
-	// temp_f = temp_c * 9.0 / 5.0 + 32.0
-	// return temp_c, temp_f
-	//
-	// while True:
-	// print(read_temp())
-	// time.sleep(1)
 }
