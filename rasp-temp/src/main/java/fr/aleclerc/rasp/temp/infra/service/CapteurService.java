@@ -41,7 +41,7 @@ public class CapteurService {
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir,
 				filter)) {
 			for (Path path : stream) {
-				resultat = path;
+				resultat = path.resolve("w1_slave");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
