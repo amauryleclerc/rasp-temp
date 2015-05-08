@@ -27,7 +27,7 @@ public class CapteurService {
 	
 	private String getDeviceFile(){
 		String baseDir = "/sys/bus/w1/devices/";
-		String deviceFolder = baseDir+"28*";
+//		String deviceFolder = baseDir+"28*";
 //		String devideFile = deviceFolder+"/w1_slave";
 //		PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:" + "28*");
 
@@ -37,7 +37,8 @@ public class CapteurService {
 	        public boolean accept(Path file) throws IOException {
 	        	
 	        	System.out.println(file.getFileName());
-	            return ((Files.isDirectory(file))&&file.getFileName().startsWith("28"));
+	        	System.out.println(Files.isDirectory(file));
+	            return ((Files.isDirectory(file))&&file.getFileName().toString().startsWith("28"));
 	        }
 	    };
 
@@ -46,7 +47,7 @@ public class CapteurService {
 	            filter)) {
 	        for (Path path : stream) {
 	            // Iterate over the paths in the directory and print filenames
-	            System.out.println(path.getFileName());
+	            System.out.println("yes"+path.getFileName());
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();
