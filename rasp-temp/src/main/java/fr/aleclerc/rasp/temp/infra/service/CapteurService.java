@@ -11,11 +11,18 @@ import java.nio.file.Path;
 public class CapteurService {
 
 	private Path filePath;
-
+	private static CapteurService instance;
 	public CapteurService() {
 		super();
 		this.runW1();
 		this.filePath = getDeviceFile();
+	}
+	public static CapteurService getInstance(){
+		if(instance ==null){
+			instance = new CapteurService();
+		}
+		return instance;
+		
 	}
 
 	private void runW1() {

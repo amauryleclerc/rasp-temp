@@ -1,5 +1,7 @@
 package fr.aleclerc.rasp.temp.webservice;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
@@ -7,9 +9,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fr.aleclerc.rasp.temp.infra.service.CapteurService;
+import com.sun.research.ws.wadl.Response;
 
-@Singleton
+import fr.aleclerc.rasp.temp.infra.service.CapteurService;
+import fr.aleclerc.rasp.temp.pojo.TempResponse;
+
 @Path("temp")
 public class TempRessource {
 
@@ -17,7 +21,7 @@ public class TempRessource {
 	
 	@PostConstruct
 	public void init(){
-		this.capteur = new CapteurService();
+		this.capteur = CapteurService.getInstance();
 	}
 
 	
@@ -25,6 +29,17 @@ public class TempRessource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getTemperture(){
 		return ""+capteur.getTemperature();
+		
+	}
+	@GET
+	@Path("json")
+	@Produces(MediaType.APPLICATION_JSON)
+	public TempResponse getTemperatureJSON(){
+		
+		TempResponse reponse = new TempResponse();
+		reponse.setTemperature(capteur.getTemperature());
+		reponse.setDate(new Date());
+		return reponse;
 		
 	}
 }
