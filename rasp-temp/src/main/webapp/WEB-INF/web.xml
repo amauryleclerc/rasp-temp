@@ -19,4 +19,9 @@
 		<servlet-name>MyApplication</servlet-name>
 		<url-pattern>/ws/*</url-pattern>
 	</servlet-mapping>
+	 <listener>
+	<listener-class>
+            fr.aleclerc.rasp.temp.listener.TempListener
+        </listener-class>
+   </listener>
 </web-app>

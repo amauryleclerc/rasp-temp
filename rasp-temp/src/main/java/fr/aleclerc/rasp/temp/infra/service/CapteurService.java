@@ -7,22 +7,28 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import fr.aleclerc.rasp.temp.pojo.TempResponse;
 
 public class CapteurService {
 
 	private Path filePath;
 	private static CapteurService instance;
+
 	public CapteurService() {
 		super();
 		this.runW1();
 		this.filePath = getDeviceFile();
 	}
-	public static CapteurService getInstance(){
-		if(instance ==null){
+
+	public static CapteurService getInstance() {
+		if (instance == null) {
 			instance = new CapteurService();
 		}
 		return instance;
-		
 	}
 
 	private void runW1() {
@@ -96,4 +102,13 @@ public class CapteurService {
 		return resultat;
 
 	}
+
+	public static TempResponse getMesure() {
+		TempResponse reponse = new TempResponse();
+		reponse.setTemperature(getInstance().getTemperature());
+		reponse.setDate(new Date());
+		reponse.setTime(new Date().getTime());
+		return reponse;
+	}
+
 }
